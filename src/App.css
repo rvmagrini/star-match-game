@@ -1,21 +1,11 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+}
+
+.header {
+  background-color: #282c34;
+  min-height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,15 +14,70 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.star-match-game {
+  max-width: 500px;
+  margin: 10vh auto;
+  font-size: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body {
+  margin: 5vh 0;
+  display: flex;
+}
+
+.help {
+  color: #666;
+  margin: 10px;
+  text-align: center;
+}
+
+.left {
+  text-align: center;
+  width: 50%;
+  border: thin solid #ddd;
+  border-radius: 10px 0 0px 10px;
+}
+
+.right {
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+  border: thin solid #ddd;
+  border-radius: 0 10px 10px 0;
+}
+
+.star {
+	display: inline-block;
+  color: #d89116c5;
+  margin: 0 15px;
+}
+
+.star:after {
+  content: "\2605";
+  font-size: 45px;
+}
+
+.number {
+  background-color: #eee;
+  border: thin solid #aaa;
+  border-radius: 5px;
+  width: 45px;
+  height: 45px;
+  margin: 10px;
+  font-size: 25px;
+}
+
+.number:focus, .number:active {
+  outline: none;
+  border: thin solid #aaa;
+}
+
+.timer {
+	color: #d3855e;
+}
+
+.game-done .message {
+  font-size: 250%;
+  font-weight: bold;
+  margin: 15px;
 }
