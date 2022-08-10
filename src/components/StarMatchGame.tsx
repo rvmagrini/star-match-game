@@ -1,33 +1,31 @@
+import { useState } from "react";
+import { mathUtils } from "../MathUtils";
+
 export const StarMatchGame = () => {
+
+  // State Elements: Data elements that are going to be used in the UI and get their values changed dynamically
+  const [stars, setStars] = useState(mathUtils.random(1,9));
+
     return (
       <div className="star-match-game">
         <div className="help">
           Pick one or more numbers that sum to the number of stars
         </div>
+
         <div className="body">
           <div className="left">
-            <div className="star" />
-            <div className="star" />
-            <div className="star" />
-            <div className="star" />
-            <div className="star" />
-            <div className="star" />
-            <div className="star" />
-            <div className="star" />
-            <div className="star" />
+            {mathUtils.range(1, stars).map(starId => 
+            <div key={starId} className="star"></div> 
+            )}
           </div>
+
           <div className="right">
-            <button className="number">1</button>
-            <button className="number">2</button>
-            <button className="number">3</button>
-            <button className="number">4</button>
-            <button className="number">5</button>
-            <button className="number">6</button>
-            <button className="number">7</button>
-            <button className="number">8</button>
-            <button className="number">9</button>
+            {mathUtils.range(1, 9).map(number =>
+              <button key={number} className="number">{number}</button>
+              )}
           </div>
         </div>
+
         <div className="timer">Time Remaining: <strong>10</strong></div>
       </div>
     );
