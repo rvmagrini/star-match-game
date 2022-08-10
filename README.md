@@ -5,3 +5,6 @@
 
 ### 2: DYNAMIC
 - [2.1] Get rid of static elements and generate them dynamically
+
+### 3: COMPONENTS: Items that share similar data or behavior
+- [3.1] Extract component for number buttons with click handler (closures)
