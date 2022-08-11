@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { mathUtils } from "../MathUtils";
 import { NumberButton } from "./NumberButton";
+import { StarsDisplay } from "./StarsDisplay";
 
 export const StarMatchGame = () => {
 
@@ -15,9 +16,7 @@ export const StarMatchGame = () => {
 
       <div className="body">
         <div className="left">
-          {mathUtils.range(1, stars).map(starId =>
-            <div key={starId} className="star"></div>
-          )}
+          <StarsDisplay amount={stars} />
         </div>
 
         <div className="right">
