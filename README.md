@@ -9,3 +9,6 @@
 ### 3: COMPONENTS: Items that share similar data or behavior
 - [3.1] Extract component for Number Buttons with click handler (closures)
 - [3.2] Extract component for Stars Display
+
+### 4: LOGIC
+- [4.1] Implement UI logic for Number Buttons
