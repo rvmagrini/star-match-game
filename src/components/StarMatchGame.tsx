@@ -7,11 +7,10 @@ export const StarMatchGame = () => {
 
   // State Elements: Data elements that are going to be used in the UI and get their values changed dynamically
   const [stars, setStars] = useState(mathUtils.random(1, 9));
+  const [availableNums, setAvailableNums] = useState(mathUtils.range(1, 9));
+  const [candidateNums, setCandidateNums] = useState<number[]>([]);
 
-  // Mocked state values to test UI
-  const [availableNums, setAvailableNums] = useState([1, 2, 3, 4, 5]);
-  const [candidateNums, setCandidateNums] = useState([2, 3]);
-
+  // UI Logic
   const candidatesAreWrong = mathUtils.sum(candidateNums) > stars;
 
   const numberStatus = (number: number) => {
@@ -22,6 +21,27 @@ export const StarMatchGame = () => {
       return candidatesAreWrong ? 'wrong' : 'candidate';
     }
     return 'available';
+  }
+
+  // Transactions Logic for click handlers
+  const onNumberClick = (number: number, currentStatus: string) => {
+    if (currentStatus === 'used') {
+      return;
+    }
+    const newCandidateNums = 
+      currentStatus === 'available' 
+      ? candidateNums.concat(number)
+      : candidateNums.filter(n => n !== number);
+    if (mathUtils.sum(newCandidateNums) !== stars) {
+      setCandidateNums(newCandidateNums);
+    } else {
+      const newAvailableNums = availableNums.filter(
+        n => !newCandidateNums.includes(n)
+      );
+      setStars(mathUtils.randomSumIn(newAvailableNums, 9));
+      setAvailableNums(newAvailableNums);
+      setCandidateNums([]);
+    }
   }
 
 
@@ -42,6 +62,7 @@ export const StarMatchGame = () => {
               key={number}
               number={number}
               status={numberStatus(number)}
+              onClick={onNumberClick}
             />
           )}
         </div>

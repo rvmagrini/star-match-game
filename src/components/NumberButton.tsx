@@ -2,6 +2,7 @@ type NumberButtonProps = {
     key: number;
     number: number;
     status: string;
+    onClick: any;
 }
 
 export const NumberButton = (props: NumberButtonProps) => {
@@ -13,11 +14,12 @@ export const NumberButton = (props: NumberButtonProps) => {
         candidate: '#3B9AE1'
     };
 
+
     return (
         <button
             className="number"
             style={{ backgroundColor: colors[props.status] }}
-            onClick={() => console.log('Number ' + props.number + ' - ' + props.status)}>
+            onClick={() => props.onClick(props.number, props.status)}>
             {props.number}
         </button>
     );

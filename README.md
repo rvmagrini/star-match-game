@@ -7,8 +7,9 @@
 - [2.1] Get rid of static elements and generate them dynamically
 
 ### 3: COMPONENTS: Items that share similar data or behavior
-- [3.1] Extract component for Number Buttons with click handler (closures)
+- [3.1] Extract component for Number Buttons with click handler (Closures)
 - [3.2] Extract component for Stars Display
 
 ### 4: LOGIC
-- [4.1] Implement UI logic for Number Buttons
+- [4.1] Implement UI logic for Number Buttons (View Functions)
+- [4.2] Implement logic for click handlers on Number Buttons (Behavior Functions)
