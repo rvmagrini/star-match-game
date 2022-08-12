@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { mathUtils } from "../MathUtils";
 import { NumberButton } from "./NumberButton";
 import { PlayAgain } from "./PlayAgain";
@@ -6,10 +6,21 @@ import { StarsDisplay } from "./StarsDisplay";
 
 export const StarMatchGame = () => {
 
-  // HOOKS to State Elements: Data elements that are going to be used in the UI and get their values changed dynamically
+  // USE STATE HOOKS (State Elements): Data elements that are going to be used in the UI and get their values changed dynamically
   const [stars, setStars] = useState(mathUtils.random(1, 9));
   const [availableNums, setAvailableNums] = useState(mathUtils.range(1, 9));
   const [candidateNums, setCandidateNums] = useState<number[]>([]);
+  const [secondsLeft, setSecondsLeft] = useState(10);
+
+  // USE EFFECT HOOKS: introduce side effect to this component (triggered every time this component is rendered)
+  useEffect(() => {
+    console.log('Rendered');
+    if (secondsLeft > 0) {
+      setTimeout(() => {
+        setSecondsLeft(secondsLeft - 1)
+      }, 1000);
+    }
+  })
 
   // UI Logic computations based on states/hooks
   const candidatesAreWrong = mathUtils.sum(candidateNums) > stars;
@@ -82,7 +93,7 @@ export const StarMatchGame = () => {
         </div>
       </div>
 
-      <div className="timer">Time Remaining: <strong>10</strong></div>
+      <div className="timer">Time Remaining: <strong>{secondsLeft}</strong></div>
     </div>
   );
 };

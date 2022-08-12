@@ -14,3 +14,6 @@
 - [4.1] Implement UI logic for Number Buttons (View Functions)
 - [4.2] Implement logic for click handlers on Number Buttons (Behavior Functions)
 - [4.3] Implement Reset Game
+
+### 5: SIDE EFFECTS
+- [5.1] Render remaining time every second to UI using useEffect
