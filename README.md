@@ -13,3 +13,4 @@
 ### 4: LOGIC
 - [4.1] Implement UI logic for Number Buttons (View Functions)
 - [4.2] Implement logic for click handlers on Number Buttons (Behavior Functions)
+- [4.3] Implement Reset Game

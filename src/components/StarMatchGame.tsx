@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { mathUtils } from "../MathUtils";
 import { NumberButton } from "./NumberButton";
+import { PlayAgain } from "./PlayAgain";
 import { StarsDisplay } from "./StarsDisplay";
 
 export const StarMatchGame = () => {
 
-  // State Elements: Data elements that are going to be used in the UI and get their values changed dynamically
+  // HOOKS to State Elements: Data elements that are going to be used in the UI and get their values changed dynamically
   const [stars, setStars] = useState(mathUtils.random(1, 9));
   const [availableNums, setAvailableNums] = useState(mathUtils.range(1, 9));
   const [candidateNums, setCandidateNums] = useState<number[]>([]);
 
-  // UI Logic
+  // UI Logic computations based on states/hooks
   const candidatesAreWrong = mathUtils.sum(candidateNums) > stars;
+  const gameIsDone = availableNums.length === 0;
 
   const numberStatus = (number: number) => {
     if (!availableNums.includes(number)) {
@@ -28,10 +30,10 @@ export const StarMatchGame = () => {
     if (currentStatus === 'used') {
       return;
     }
-    const newCandidateNums = 
-      currentStatus === 'available' 
-      ? candidateNums.concat(number)
-      : candidateNums.filter(n => n !== number);
+    const newCandidateNums =
+      currentStatus === 'available'
+        ? candidateNums.concat(number)
+        : candidateNums.filter(n => n !== number);
     if (mathUtils.sum(newCandidateNums) !== stars) {
       setCandidateNums(newCandidateNums);
     } else {
@@ -44,7 +46,13 @@ export const StarMatchGame = () => {
     }
   }
 
+  const resetGame = () => {
+    setStars(mathUtils.random(1, 9));
+    setAvailableNums(mathUtils.range(1, 9));
+    setCandidateNums([]);
+  }
 
+  // Description of UI based on all states and computations
   return (
     <div className="star-match-game">
       <div className="help">
@@ -53,7 +61,13 @@ export const StarMatchGame = () => {
 
       <div className="body">
         <div className="left">
-          <StarsDisplay amount={stars} />
+          {
+            gameIsDone ? (
+              <PlayAgain onClick={resetGame} />
+            ) : (
+              <StarsDisplay amount={stars} />
+            )
+          }
         </div>
 
         <div className="right">

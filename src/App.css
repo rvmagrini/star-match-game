@@ -81,3 +81,13 @@
   font-weight: bold;
   margin: 15px;
 }
+
+.play-again {
+  margin-top: 23%;
+  background-color: #fff;
+  border: 3px solid #d89116c5;
+  border-radius: 5px;
+  width: 130px;
+  height: 70px;
+  font-size: 25px;
+}
