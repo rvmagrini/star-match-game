@@ -12,13 +12,20 @@ export const StarMatchGame = () => {
   const [candidateNums, setCandidateNums] = useState<number[]>([]);
   const [secondsLeft, setSecondsLeft] = useState(10);
 
-  // USE EFFECT HOOKS: introduce side effect to this component (triggered every time this component is rendered)
+  // USE EFFECT HOOKS: introduce side effect to this component (triggered every time this component is done rendering)
   useEffect(() => {
-    console.log('Rendered');
+    console.log('Done rendering');
+
     if (secondsLeft > 0) {
-      setTimeout(() => {
+      // Introduce new timer that changes state of secondsLeft
+      const timerId = setTimeout(() => {
         setSecondsLeft(secondsLeft - 1)
       }, 1000);
+      return () => {
+        console.log('Component is going to re-render');
+        // Remove previous timer: effects should always be cleaned after taking place
+        clearTimeout(timerId);
+      }
     }
   })
 

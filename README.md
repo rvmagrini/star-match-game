@@ -17,3 +17,4 @@
 
 ### 5: SIDE EFFECTS
 - [5.1] Render remaining time every second to UI using useEffect
+- [5.2] Clean side effects of time remaining
