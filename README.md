@@ -18,3 +18,4 @@
 ### 5: SIDE EFFECTS
 - [5.1] Render remaining time every second to UI using useEffect
 - [5.2] Clean side effects of time remaining
+- [5.3] Adjust game status (time remaining, available numbers and reset)

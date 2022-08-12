@@ -31,7 +31,8 @@ export const StarMatchGame = () => {
 
   // UI Logic computations based on states/hooks
   const candidatesAreWrong = mathUtils.sum(candidateNums) > stars;
-  const gameIsDone = availableNums.length === 0;
+  const gameStatus = availableNums.length === 0 ? 'won'
+  : secondsLeft === 0 ? 'lost' : 'active';
 
   const numberStatus = (number: number) => {
     if (!availableNums.includes(number)) {
@@ -64,10 +65,12 @@ export const StarMatchGame = () => {
     }
   }
 
+  // Reset all states and side effects
   const resetGame = () => {
     setStars(mathUtils.random(1, 9));
     setAvailableNums(mathUtils.range(1, 9));
     setCandidateNums([]);
+    setSecondsLeft(10);
   }
 
   // Description of UI based on all states and computations
@@ -80,8 +83,8 @@ export const StarMatchGame = () => {
       <div className="body">
         <div className="left">
           {
-            gameIsDone ? (
-              <PlayAgain onClick={resetGame} />
+            gameStatus !== 'active' ? (
+              <PlayAgain onClick={resetGame} gameStatus={gameStatus} />
             ) : (
               <StarsDisplay amount={stars} />
             )

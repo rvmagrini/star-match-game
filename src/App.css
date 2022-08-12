@@ -77,13 +77,13 @@
 }
 
 .game-done .message {
-  font-size: 250%;
+  font-size: 30px;
   font-weight: bold;
   margin: 15px;
 }
 
 .play-again {
-  margin-top: 23%;
+  margin-top: 10%;
   background-color: #fff;
   border: 3px solid #d89116c5;
   border-radius: 5px;
