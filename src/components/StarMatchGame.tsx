@@ -16,7 +16,7 @@ export const StarMatchGame = () => {
   useEffect(() => {
     console.log('Done rendering');
 
-    if (secondsLeft > 0) {
+    if (secondsLeft > 0 && availableNums.length > 0) {
       // Introduce new timer that changes state of secondsLeft
       const timerId = setTimeout(() => {
         setSecondsLeft(secondsLeft - 1)
@@ -46,7 +46,7 @@ export const StarMatchGame = () => {
 
   // Transactions Logic for click handlers
   const onNumberClick = (number: number, currentStatus: string) => {
-    if (currentStatus === 'used') {
+    if (currentStatus === 'used' || gameStatus !== 'active') {
       return;
     }
     const newCandidateNums =
