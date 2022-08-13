@@ -21,3 +21,5 @@
 - [5.3] Adjust game status (time remaining, available numbers and reset)
 - [5.4] Stop timer and deactivate numbers when game is done
 
+### 6: REFACTOR
+- [6.1] Reset game using Unmouting-Remounting
