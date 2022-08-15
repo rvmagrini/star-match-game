@@ -7,7 +7,7 @@ type NumberButtonProps = {
 
 export const NumberButton = (props: NumberButtonProps) => {
 
-    const colors: {[index: string]:any} = {
+    const colors: { [index: string]: any } = {
         available: 'lightgray',
         used: '#53BF9D',
         wrong: '#F87474',

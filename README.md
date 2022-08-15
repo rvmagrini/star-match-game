@@ -23,3 +23,4 @@
 
 ### 6: REFACTOR
 - [6.1] Reset game using Unmouting-Remounting
+- [6.2] Extract States, Effects and Transactions (set Functions) logic to Custom Hook

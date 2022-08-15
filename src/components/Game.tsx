@@ -1,42 +1,28 @@
-import { useState, useEffect } from "react";
 import { mathUtils } from "../MathUtils";
+import { useGameState } from "../useGameState";
 import { NumberButton } from "./NumberButton";
 import { PlayAgain } from "./PlayAgain";
 import { StarsDisplay } from "./StarsDisplay";
 
 type GameProps = {
-    startNewGame: any;
+  startNewGame: any;
 }
 
 export const Game = (props: GameProps) => {
 
-  // USE STATE HOOKS (State Elements): Data elements that are going to be used in the UI and get their values changed dynamically
-  const [stars, setStars] = useState(mathUtils.random(1, 9));
-  const [availableNums, setAvailableNums] = useState(mathUtils.range(1, 9));
-  const [candidateNums, setCandidateNums] = useState<number[]>([]);
-  const [secondsLeft, setSecondsLeft] = useState(10);
+  // Reading values from CUSTOM HOOK
+  const {
+    stars,
+    availableNums,
+    candidateNums,
+    secondsLeft,
+    setGameState
+  } = useGameState();
 
-  // USE EFFECT HOOKS: introduce side effect to this component (triggered every time this component is done rendering)
-  useEffect(() => {
-    console.log('Done rendering');
-
-    if (secondsLeft > 0 && availableNums.length > 0) {
-      // Introduce new timer that changes state of secondsLeft
-      const timerId = setTimeout(() => {
-        setSecondsLeft(secondsLeft - 1)
-      }, 1000);
-      return () => {
-        console.log('Component is going to re-render');
-        // Remove previous timer: effects should always be cleaned after taking place
-        clearTimeout(timerId);
-      }
-    }
-  })
-
-  // UI Logic computations based on states/hooks
+  // UI Logic computations based on States/Hooks
   const candidatesAreWrong = mathUtils.sum(candidateNums) > stars;
   const gameStatus = availableNums.length === 0 ? 'won'
-  : secondsLeft === 0 ? 'lost' : 'active';
+    : secondsLeft === 0 ? 'lost' : 'active';
 
   const numberStatus = (number: number) => {
     if (!availableNums.includes(number)) {
@@ -57,20 +43,13 @@ export const Game = (props: GameProps) => {
       currentStatus === 'available'
         ? candidateNums.concat(number)
         : candidateNums.filter(n => n !== number);
-    if (mathUtils.sum(newCandidateNums) !== stars) {
-      setCandidateNums(newCandidateNums);
-    } else {
-      const newAvailableNums = availableNums.filter(
-        n => !newCandidateNums.includes(n)
-      );
-      setStars(mathUtils.randomSumIn(newAvailableNums, 9));
-      setAvailableNums(newAvailableNums);
-      setCandidateNums([]);
-    }
+    
+    // Updating states
+    setGameState(newCandidateNums);
   }
 
 
-  // Description of UI based on all states and computations
+  // Rendering UI based on current values of all states and computations
   return (
     <div className="star-match-game">
       <div className="help">
